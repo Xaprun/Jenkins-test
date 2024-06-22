@@ -46,7 +46,7 @@ ls -al'''
 getent group 
                '''
             sh '''cat /etc/passwd
-cat /etc/shadow
+# cat /etc/shadow
 cut -d: -f1 /etc/passwd
 getent passwd
 getent passwd | cut -d: -f1
