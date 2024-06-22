@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Init') {
       steps {
-        sh '''localhost
+        sh '''
 pwd
 ls -al
 '''
