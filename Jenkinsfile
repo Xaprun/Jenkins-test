@@ -42,11 +42,11 @@ ls -al'''
 
         stage('NewUser') {
           steps {
-            sh '''sudo groupadd insiders
-getent group |grep insiders
-'''
+            sh '''groupadd insiders
+               getent group |grep insiders
+               '''
             echo 'Group created'
-            sh 'sudo useradd insider01 -G insiders'
+            sh 'useradd insider01 -G insiders'
             echo 'User Created'
           }
         }
@@ -56,9 +56,9 @@ getent group |grep insiders
 
     stage('File Own Mod') {
       steps {
-        sh '''sudo chgrp insiders logfile.txt
-sudo chown insider01 logfile.txt 
-ls -al'''
+        sh '''chgrp insiders logfile.txt
+           chown insider01 logfile.txt 
+            ls -al'''
       }
     }
 
