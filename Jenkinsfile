@@ -42,12 +42,17 @@ ls -al'''
 
         stage('NewUser') {
           steps {
-            sh '''groupadd insiders
-               getent group |grep insiders
+            sh '''#groupadd insiders
+getent group 
                '''
-            echo 'Group created'
-            sh 'useradd insider01 -G insiders'
-            echo 'User Created'
+            sh '''cat /etc/passwd
+cat /etc/shadow
+cut -d: -f1 /etc/passwd
+getent passwd
+getent passwd | cut -d: -f1
+awk -F: \'{ printf "Username: %-10s UID: %-5d GID: %-5d Home: %-20s Shell: %-15s\\n", $1, $3, $4, $6, $7 }\' /etc/passwd
+awk -F: \'$3 >= 1000 { print $1 }\' /etc/passwd
+getent passwd | awk -F: \'{ print $1 " - Home Directory: " $6 }\''''
           }
         }
 
@@ -56,8 +61,8 @@ ls -al'''
 
     stage('File Own Mod') {
       steps {
-        sh '''chgrp insiders logfile.txt
-           chown insider01 logfile.txt 
+        sh '''#chgrp insiders logfile.txt
+#chown insider01 logfile.txt 
             ls -al'''
       }
     }
