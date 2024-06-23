@@ -62,8 +62,9 @@ getent passwd | awk -F: \'{ print $1 " - Home Directory: " $6 }\''''
     stage('File Own Mod') {
       steps {
         sh '''#chgrp insiders logfile.txt
-chown games logfile.txt 
-            ls -al'''
+# chown games logfile.txt 
+cat logfile.txt
+'''
       }
     }
 
